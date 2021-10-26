@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
-const Schema = require.Schema;
+const Schema = mongoose.Schema;
 
 const Entry = new Schema ({
-        feeling: {Type: Number, default: 0, required},
-        emotion: {Type: String, default: ''},
-        intensity: {Type: Number, default: 0, required},
-        thought: {Type: String, default: ''},
-        rob: {Type: Number, default: 0},
-        situation: {Type: String, required},
-        private: {Type: Boolean, default: false}
+        feeling: {type: Number, default: 0, required: true},
+        emotion: {type: String, default: ''},
+        intensity: {type: Number, default: 0, required: true},
+        thought: {type: String, default: ''},
+        rob: {type: Number, default: 0},
+        situation: {type: String, required: true},
+        private: {type: Boolean, default: false}
     }, 
     {timestamps: true}
 );

@@ -8,6 +8,7 @@ const cors = require('cors');
 require('dotenv').config();
 const { MONGODB_URL, PORT = 3001} = process.env;
 const app = express(); 
+const entriesController = require('./controllers/entries');
 //=============================================================================
 //DATABASE
 //=============================================================================
@@ -22,6 +23,8 @@ mongoose.connection
 app.use(logger('dev'));
 app.use(cors());
 app.use(express.json());
+app.use(express.static('public'))
+app.use('/api/entries', entriesController);
 //=============================================================================
 //LISTENER
 //=============================================================================
