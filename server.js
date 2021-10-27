@@ -5,6 +5,7 @@ const express = require('express');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const bcrypt = require('bcrypt');
 require('dotenv').config();
 const { MONGODB_URL, PORT = 3001} = process.env;
 const app = express(); 
