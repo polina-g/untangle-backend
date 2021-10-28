@@ -6,9 +6,9 @@ const Client = new Schema ({
         f_name: {type: String, default: ''},
         l_name: {type: String, default: ''},
         email: {type: String, required: true},
-        password: {type: String, required: true},
         therapist: {type: Array, default: []},
-        entry: {type: Array, default: []}
+        entry: {type: Array, default: []},
+        managedBy: String // <= google firebase user's UID number
     }, 
     {timestamps: true}
 );
