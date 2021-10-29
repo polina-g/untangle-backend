@@ -15,6 +15,6 @@ clientRouter.post('/', async (req, res) => {
     } catch (error) {
         
     }
-})
+});
 
 module.exports = clientRouter;

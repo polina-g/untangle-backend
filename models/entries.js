@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const Entry = new Schema ({
+        client: String,
         feeling: {type: Number, default: 0, required: true},
         emotion: {type: String, default: ''},
         intensity: {type: Number, default: 0, required: true},
