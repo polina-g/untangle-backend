@@ -10,7 +10,7 @@ const Clients = require('../models/clients');
 //INDEX
 entriesController.get('/', async (req, res) => {
     try {
-        res.json(await Entries.find({managedBy: req.user.uid}));
+        res.json(await Entries.find({}));
     } catch (error) {
         res.status(400).render('error.ejs', {status: 400});
     }
@@ -41,9 +41,20 @@ entriesController.put('/:id', async (req, res) => {
 //CREATE
 entriesController.post('/', async (req, res) => {
     try {
-        res.json(await Entries.create(req.body));
+        //Find user creating post
+        const user = await Clients.find({"managedBy": req.user.uid})
+
+        //Crste entry
+        const entry = await Entries.create(req.body)
+        
+        //Add created entry ID to user's entry array
+        user[0].entry.push(entry._id)
+        user[0].save();
+        
+        res.json(entry);
     } catch (error) {
-        res.status(400).json('error.ejs', {status: 400});
+        console.log('Create entry error: ', error)
+        res.status(400).render('error.ejs', {status: 400});
     };
 });
 

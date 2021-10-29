@@ -37,9 +37,7 @@ admin.initializeApp({
 
 app.use(async function(req, res, next) {
     const token = req.get('Authorization');
-    console.log('this is token ', token);
     const authUser = await admin.auth().verifyIdToken(token.replace('Bearer ', ''));
-    console.log(authUser);
     req.user = authUser;
     next();
 })
@@ -52,7 +50,9 @@ function isAuthenticated(req, res, next) {
 
 app.use('/api/entries', isAuthenticated, entriesController);
 app.use('/api/contacts', isAuthenticated, contactController);
-
+//=============================================================================
+//ROUTES - CATCH API CALLS WITH NO DATA
+//=============================================================================
 app.get('/api', (req, res) => {
     res.json({message: 'Welcome to the Untangle API'});
 });
