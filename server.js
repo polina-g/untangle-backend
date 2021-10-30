@@ -13,7 +13,7 @@ const serviceAccount = require('./untangle-98fed-firebase-adminsdk-j2m7c-296acd6
 
 const app = express(); 
 const entriesController = require('./controllers/entries');
-const contactController = require('./controllers/clients');
+const clientsController = require('./controllers/clients');
 //=============================================================================
 //DATABASE
 //=============================================================================
@@ -49,7 +49,7 @@ function isAuthenticated(req, res, next) {
 }
 
 app.use('/api/entries', isAuthenticated, entriesController);
-app.use('/api/contacts', isAuthenticated, contactController);
+app.use('/api/clients', isAuthenticated, clientsController);
 //=============================================================================
 //ROUTES - CATCH API CALLS WITH NO DATA
 //=============================================================================

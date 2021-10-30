@@ -22,7 +22,10 @@ clientRouter.post('/', async (req, res) => {
 //Show - Get specific client
 clientRouter.get('/client', async (req, res) => {
     try {
-        res.json(await Client.find({managedBy: req.user.uid}));
+        console.log(req.user.uid);
+        const client = await Client.find({managedBy: req.user.uid})
+        console.log(client);
+        res.json(client);
     } catch (error) {
         res.status(400).render('error.ejs', {status: 400});
     }
