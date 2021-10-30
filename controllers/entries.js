@@ -11,8 +11,6 @@ const Clients = require('../models/clients');
 entriesController.get('/', async (req, res) => {
     try {
         res.json(await Entries.find({client: req.user.uid}));
-        // const client = await Clients.find({managedBy: req.user.uid});
-        // const entryArray = client[0].entry;
     } catch (error) {
         res.status(400).render('error.ejs', {status: 400});
     }
