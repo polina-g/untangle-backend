@@ -6,13 +6,13 @@ const Therapist = new Schema ({
         f_name: {type: String, required: true},
         l_name: {type: String, required: true},
         email: {type: String, required: true},
-        password: {type: String, required: true},
         license: {type: String, required: true},
         city: {type: String, required: true},
         state: {type: String, required: true},
         country: {type: String, default: 'United States'},
         img: {type: String, default: '../static/img/therapist_default_img.png'},
-        clients: {type: Array, default: []}
+        clients: {type: Array, default: []},
+        managedBy: String,
     }, 
     {timestamps: true}
 );

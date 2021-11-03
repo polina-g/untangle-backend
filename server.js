@@ -5,7 +5,6 @@ const express = require('express');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const bcrypt = require('bcrypt');
 require('dotenv').config();
 const { 
     MONGODB_URL, 
@@ -18,6 +17,7 @@ const admin = require('firebase-admin');
 const app = express(); 
 const entriesController = require('./controllers/entries');
 const clientsController = require('./controllers/clients');
+const therapistController = require('./controllers/therapists');
 //=============================================================================
 //DATABASE
 //=============================================================================
@@ -73,6 +73,7 @@ function isAuthenticated(req, res, next) {
 
 app.use('/api/entries', isAuthenticated, entriesController);
 app.use('/api/clients', isAuthenticated, clientsController);
+app.use('/api/therapists', therapistController);
 //=============================================================================
 //ROUTES - CATCH API CALLS WITH NO DATA
 //=============================================================================
