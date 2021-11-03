@@ -73,7 +73,7 @@ function isAuthenticated(req, res, next) {
 
 app.use('/api/entries', isAuthenticated, entriesController);
 app.use('/api/clients', isAuthenticated, clientsController);
-app.use('/api/therapists', therapistController);
+app.use('/api/therapists', isAuthenticated, therapistController);
 //=============================================================================
 //ROUTES - CATCH API CALLS WITH NO DATA
 //=============================================================================
