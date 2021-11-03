@@ -18,3 +18,5 @@ therapistRouter.post('/', async (req, res) => {
         res.status(400).render('error.ejs', {status: 400});
     }
 });
+
+module.exports = therapistRouter;
