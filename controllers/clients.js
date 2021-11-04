@@ -1,4 +1,5 @@
 const Client = require('../models/clients');
+const Therapist = require('../models/therapists');
 const clientRouter = require('express').Router();
 
 //Index - get ALL clients
@@ -28,6 +29,24 @@ clientRouter.get('/client', async (req, res) => {
         res.json(client);
     } catch (error) {
         res.status(400).render('error.ejs', {status: 400});
+    }
+});
+
+//Update - Add Therapist
+clientRouter.put('/client', async (req, res) => {
+    try {
+        const client = await Client.find({managedBy: req.user.uid});
+        const newClient = await Client.findByIdAndUpdate(
+            client[0]._id,
+            {therapist: [req.body.therapistId]},
+            {new: true}
+        )
+        const therapist = await Therapist.findById(req.body.therapistId);
+        therapist.clients.push(client[0]);
+        await therapist.save();
+        res.json(therapist);
+    } catch (error) {
+        console.log('error: ', error);
     }
 })
 
