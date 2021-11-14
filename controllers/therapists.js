@@ -10,6 +10,16 @@ therapistRouter.get('/', async (req, res) => {
     }
 });
 
+//Find specific therapist user
+therapistRouter.get('/therapist', async (req, res) => {
+    try {
+        const therapist = await Therapist.find({managedBy: req.user.uid})
+        res.json(therapist);
+    } catch (error) {
+        res.status(400).render('error.ejs', {status: 400});
+    }
+});
+
 //Create
 therapistRouter.post('/', async (req, res) => {
     try {
